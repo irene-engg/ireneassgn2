@@ -22,7 +22,7 @@ steps:
       - 'instances'
       - 'update-container'
       - 'app-instance'
-      - '--zone=northamerica-northeast2-a'
+      - '--zone=us-central1-a'
       - '--container-image=ireneengg2011/assgn2:latest'
 
 options:
