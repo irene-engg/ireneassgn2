@@ -30,4 +30,4 @@ options:
   
 # Define output image location
 images:
-  - 'ireneengg2011/assgn2:latest:latest'
+  - 'ireneengg2011/assgn2:latest'
