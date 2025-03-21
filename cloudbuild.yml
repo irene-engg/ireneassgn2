@@ -11,7 +11,7 @@ steps:
 
   # ✅ Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'ireneengg2011/assgn2:latest', '.']
+    args: ['build', '-t', 'ireneengg2011/assgn2:latest', './myapp']
 
   # ✅ Push the image to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
