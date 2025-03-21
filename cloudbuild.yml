@@ -1,5 +1,5 @@
 steps:
-  # 1. Authenticate Docker with Docker Hub using Secret Manager
+  # 1. Authenticate Docker with Docker Hub using Secret Manager -irene
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'sh'
     args:
