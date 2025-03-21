@@ -1,6 +1,6 @@
 steps:
   # ✅ Authenticate with Docker Hub using a non-interactive method
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'sh'
     args:
       - '-c'
