@@ -1,11 +1,13 @@
 steps:
-  # ✅ Authenticate with Docker Hub using a non-interactive method
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # ✅ Authenticate with Docker Hub using `gcr.io/cloud-builders/docker`
+  - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'sh'
     args:
       - '-c'
       - |
-        echo $(gcloud secrets versions access latest --secret=docker-hub-password) | docker login -u "ireneengg2011" --password-stdin
+        gcloud auth configure-docker
+        echo "$$DOCKER_HUB_PASSWORD" | docker login -u "ireneengg2011" --password-stdin
+    secretEnv: ['DOCKER_HUB_PASSWORD']
 
   # ✅ Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -15,7 +17,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'ireneengg2011/assgn2:latest']
 
-  # ✅ Ensure `gcloud` is available when updating Compute Engine
+  # ✅ Update Compute Engine with the new container image
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'compute'
@@ -23,7 +25,7 @@ steps:
       - 'update-container'
       - 'my-instance'
       - '--zone=us-central1-a'
-      - '--container-image=ireneengg2011/assgn2:latest'
+      - '--container-image=ireneengg2011/assgn2:latest']
 
 # ✅ Ensure Cloud Build logs are enabled
 options:
@@ -32,3 +34,9 @@ options:
 # ✅ Define the Docker image being built
 images:
   - 'ireneengg2011/assgn2:latest'
+
+# ✅ Define Secret Manager access
+availableSecrets:
+  secretManager:
+    - versionName: projects/YOUR_PROJECT_ID/secrets/docker-hub-password/versions/latest
+      env: 'DOCKER_HUB_PASSWORD'
