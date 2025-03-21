@@ -34,9 +34,3 @@ options:
 # ✅ Define the Docker image being built
 images:
   - 'ireneengg2011/assgn2:latest'
-
-# ✅ Define Secret Manager access (Fixes YAML syntax issue)
-availableSecrets:
-  secretManager:
-    - versionName: projects/YOUR_PROJECT_ID/secrets/docker-hub-password/versions/latest
-      env: 'DOCKER_HUB_PASSWORD'
