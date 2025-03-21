@@ -25,7 +25,7 @@ steps:
       - 'update-container'
       - 'my-instance'
       - '--zone=us-central1-a'
-      - '--container-image=ireneengg2011/assgn2:latest']
+      - '--container-image=ireneengg2011/assgn2:latest'
 
 # ✅ Ensure Cloud Build logs are enabled
 options:
@@ -35,7 +35,7 @@ options:
 images:
   - 'ireneengg2011/assgn2:latest'
 
-# ✅ Define Secret Manager access
+# ✅ Define Secret Manager access (Fixes YAML syntax issue)
 availableSecrets:
   secretManager:
     - versionName: projects/YOUR_PROJECT_ID/secrets/docker-hub-password/versions/latest
