@@ -25,6 +25,9 @@ steps:
       - '--zone=us-central1-a'
       - '--container-image=YOUR_DOCKER_HUB_USERNAME/my-app:latest'
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 # Define output image location
 images:
   - 'YOUR_DOCKER_HUB_USERNAME/my-app:latest'
