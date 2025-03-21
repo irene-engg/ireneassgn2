@@ -23,7 +23,7 @@ steps:
       - 'compute'
       - 'instances'
       - 'update-container'
-      - 'my-instance'
+      - 'app-instance'
       - '--zone=us-central1-a'
       - '--container-image=ireneengg2011/assgn2:latest'
 
