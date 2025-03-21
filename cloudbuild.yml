@@ -1,19 +1,19 @@
 steps:
-  # 1. Authenticate Docker with Docker Hub using Secret Manager -irene
+  # 1. Authenticate Docker with Docker Hub using Secret Manager
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'sh'
     args:
       - '-c'
       - |
-        echo $(gcloud secrets versions access latest --secret=docker-hub-password) | docker login -u "YOUR_DOCKER_HUB_USERNAME" --password-stdin
+        echo $(gcloud secrets versions access latest --secret=docker-hub-password) | docker login -u "ireneengg2011" --password-stdin
 
   # 2. Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'YOUR_DOCKER_HUB_USERNAME/my-app:latest', '.']
+    args: ['build', '-t', 'ireneengg2011/assgn2:latest', '.']
 
   # 3. Push the image to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'YOUR_DOCKER_HUB_USERNAME/my-app:latest']
+    args: ['push', 'ireneengg2011/assgn2:latest']
 
   # 4. Update Compute Engine to use the new image
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -21,13 +21,13 @@ steps:
       - 'compute'
       - 'instances'
       - 'update-container'
-      - 'my-instance'
-      - '--zone=us-central1-a'
-      - '--container-image=YOUR_DOCKER_HUB_USERNAME/my-app:latest'
+      - 'app-instance'
+      - '--zone=northamerica-northeast2-a'
+      - '--container-image=ireneengg2011/assgn2:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
+  
 # Define output image location
 images:
-  - 'YOUR_DOCKER_HUB_USERNAME/my-app:latest'
+  - 'ireneengg2011/assgn2:latest:latest'
